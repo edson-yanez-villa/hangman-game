@@ -1,0 +1,21 @@
+.logo {
+    margin-top: 24px;
+    margin-left: 16px;
+    display: flex;
+    justify-content: start;
+    width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+    .logo {
+        margin-top: 75px;
+        margin-left: 40px;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .logo {
+        margin-top: 40px;
+        margin-left: 84px;
+    }
+}

@@ -5,14 +5,6 @@
     align-items: center;
 }
 
-.start__image {
-    margin-top: 24px;
-    margin-left: 16px;
-    display: flex;
-    justify-content: start;
-    width: 100%;
-}
-
 .start__buttons {
     display: flex;
     flex-direction: column;
@@ -55,11 +47,6 @@
 }
 
 @media screen and (min-width: 768px) {
-    .start__image {
-        margin-top: 75px;
-        margin-left: 40px;
-    }
-
     .start__buttons {
         height: calc(100vh - 248px);
     }
@@ -70,16 +57,12 @@
 }
 
 @media screen and (min-width: 1440px) {
-    .start__image {
-        margin-top: 40px;
-        margin-left: 84px;
-    }
-
     .start__game {
         height: 114px;
         font-size: 18px;
         line-height: 22px;
     }
+    
     .add__game {
         width: 280px;
     }

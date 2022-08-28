@@ -1,0 +1,103 @@
+.settings  {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.settings__box {
+    display: flex;
+    flex-direction: column;
+    width: 343px;
+    height: calc(100vh - 175px);
+    justify-content: space-around;
+    align-items: center;
+}
+
+.box__input {
+    width: 100%;
+}
+
+.box__input input {
+    width: 100%;
+    height: 48px;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 150%;
+    color: #0A3871;
+    border: none;
+    background: #F3F5FC;
+}
+
+.buttons__box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.info__box {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 150%;
+    color: #495057;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.save__button {
+    width: 343px;
+    height: 67px;
+    background: #0A3871;
+    border-radius: 24px;
+    border: none;
+    cursor: pointer;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    color: #FFFFFF;
+    margin-bottom: 32px;
+}
+
+.cancel__button {
+    width: 343px;
+    height: 67px;
+    border: 1px solid #0A3871;
+    border-radius: 24px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #0A3871;
+    background: #F3F5FC;
+    cursor: pointer;
+}
+
+.save__button:active, .cancel__button:active{
+    box-shadow: 0px 4px 8px rgba(darken(dodgerblue, 30%));
+    transform: scale(.98);
+}
+
+@media screen and (min-width: 768px) {
+    .settings__box {
+        height: calc(100vh - 240px);
+        width: 688px;
+    }
+
+    .buttons {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .save__button, .cancel__button {
+        width: 332px;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .settings__box {
+        height: calc(100vh - 210px);
+    }
+}
