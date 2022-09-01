@@ -1,11 +1,11 @@
-.settings  {
+.game  {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.settings__box {
+.game__box {
     display: flex;
     flex-direction: column;
     width: 343px;
@@ -14,43 +14,43 @@
     align-items: center;
 }
 
-.box__input {
-    width: 100%;
-}
-
-.box__input input {
-    width: 100%;
-    height: 48px;
-    font-weight: 400;
-    font-size: 32px;
-    line-height: 150%;
-    color: #0A3871;
-    border: none;
-    background: #F3F5FC;
-}
-
-.buttons__box {
-    width: 100%;
+.box__canva {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 507px;
+    width: 304px;
 }
 
-.info__box {
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 150%;
-    color: #495057;
+.box__hangman {
+    width: 294px;
+    height: 360px;
+}
+
+.box__leters {
+    width: 100%;
+    height: 116px;
 }
 
 @media screen and (min-width: 768px) {
-    .settings__box {
+    .game__box {
         height: calc(100vh - 240px);
         width: 688px;
+    }
+
+    .box__canva {
+        width: 100%;
+    }
+
+    .box__leters {
+        width: 464px;
+        height: 152px;
     }
 }
 
 @media screen and (min-width: 1440px) {
-    .settings__box {
+    .game__box {
         height: calc(100vh - 210px);
     }
 }

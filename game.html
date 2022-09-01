@@ -4,34 +4,34 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <title>Hangman - Settings</title>
+        <title>Hangman - Game</title>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
         <script src="https://kit.fontawesome.com/2d82ec220f.js" crossorigin="anonymous"></script>
         <link href="./assets/css/reset.css" rel="stylesheet">
         <link href="./assets/css/normalize.css" rel="stylesheet">
         <link href="./assets/css/base.css" rel="stylesheet">
         <link href="./assets/css/logo.css" rel="stylesheet">
-        <link href="./assets/css/settings/settings.css" rel="stylesheet">
+        <link href="./assets/css/game/game.css" rel="stylesheet">
         <link href="./assets/css/buttons.css" rel="stylesheet">
     </head>
     <body>
         <main>
-            <section class="settings container">
+            <section class="game container">
                 <div class="logo">
                     <img src="./assets/img/logo.png" alt="Logo de la pagina" class="image__logo">
                 </div>
-                <div class="settings__box">
-                    <div class="box__input">
-                        <input type="text" class="input__box" placeholder="Ingrese una palabra">
+                <div class="game__box">
+                    <div class="box__canva">
+                        <canvas class="box__hangman">
+
+                        </canvas>
+                        <canvas class="box__leters">
+                            
+                        </canvas>
                     </div>
-                    <div class="buttons__box">
-                        <div class="info">
-                            <p class="info__box"><i class="fa-solid fa-circle-info"></i> Máx. de 8 letras</p>
-                        </div>
-                        <div class="buttons">
-                            <button class="blue__button">Guardar y empezar</button>
-                            <button class="white__button">Cancelar</button>
-                        </div>
+                    <div class="buttons">
+                        <button class="blue__button">Nuevo juego</button>
+                        <button class="white__button">Desistir</button>
                     </div>
                 </div>
             </section>
