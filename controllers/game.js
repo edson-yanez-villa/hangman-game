@@ -1,6 +1,5 @@
-const goToIndex = (event, game) => {
+const goToIndex = (event) => {
     window.location.href = "./index.html";
-    return game;
 }
 
 export const gamePage = {

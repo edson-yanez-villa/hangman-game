@@ -1,6 +1,7 @@
-const goSettings = (event, game) => {
+import { start } from "./start.js";
+
+const goSettings = (event) => {
     window.location.href = "./settings.html";
-    return game;
 };
 
 const validateWord = (word) => {    
@@ -9,25 +10,26 @@ const validateWord = (word) => {
     return word.length <= 8 && result[0].length == word.length;
 }
 
-const addWord = (event, game) => {
+const addWord = (event) => {
     const input = document.querySelector("[input-word]");
     const word = input.value;
     input.value = "";
     if(validateWord(word))
     {
-        var words = game["words"] ? game["words"] : [];
+        let game = JSON.parse(sessionStorage.getItem("game")) || {};
+        let words = game["words"] ? game["words"] : [];
         words.push(word.toLowerCase());
         game["words"] = words;
+        game = start.getWord(game);
+        sessionStorage.setItem("game", JSON.stringify(game));
         window.location.href = "./game.html";
     }else{
         alert("Ingrese una palabra de almenos 8 caracteres y que solo contenga letras");
     }
-    return game;
 }
 
-const goToIndex = (event, game) => {
+const goToIndex = (event) => {
     window.location.href = "./index.html";
-    return game;
 }
 
 export const settings = {
