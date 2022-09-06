@@ -1,11 +1,18 @@
-const goToStart = (event, words) => {
-    if(words.length == 0){
+const getWord = (game) => {
+    const index = Math.floor(Math.random() * game['words'].length);
+    console.log(index);
+    game["word"] =  game['words'][index];
+    return game;
+}
+
+const goToStart = (event, game) => {
+    if(!game["words"] || game["words"].length == 0){
         window.location.href = "./settings.html";
-        words.push("Hola")
     }else{
+        game = getWord(game);
         window.location.href = "./game.html";
     }
-    return {words}
+    return game
 };
 
 export const start = {
