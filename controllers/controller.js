@@ -1,6 +1,5 @@
 import { settings } from "./settings.js";
 import { start } from "./start.js";
-import { gamePage } from "./game.js";
 
 export const clickButton = (event) => {
     const buttonType = event.dataset.button;
