@@ -30,20 +30,28 @@ buttonsGame.forEach(button => {
 });
 
 const renderWords = () => {
+
+    const correctWord = ["A", "B", "C", "D", "F", "H", "I", "J"];
     const widthCanva = canvaLeters.clientWidth;
     const heightCanva = canvaLeters.clientHeight;
-    const widthLine = widthCanva/word.length;
+    const widthLine = widthCanva/(correctWord.length*1.5);
 
-    const pincel = canvaLeters.getContext("2d");
-    pincel.fillStyle = "black";
+    const em = canvaLeters.offsetHeight;
+
+    let pincel = canvaLeters.getContext("2d");
+
     pincel.lineWidth = 5;
-
+    pincel.font = "32px lucida console";
     pincel.beginPath();
-    for (let possitionLine = 0; possitionLine < widthCanva; possitionLine += widthLine) {
-        pincel.moveTo(possitionLine,heightCanva/2);
-        pincel.lineTo(possitionLine + (widthLine*0.7),heightCanva/2);
+    
+    let possitionLine = 0;
+    correctWord.forEach(letter => {
+        pincel.fillText(letter, possitionLine+(widthLine/2) - 14, heightCanva/2 - 30);
+        pincel.moveTo(possitionLine, heightCanva/2);
+        pincel.lineTo(possitionLine + (widthLine*0.8),heightCanva/2);
         pincel.stroke();
-    }       
+        possitionLine += widthLine;
+    });
 }
 
 renderWords();
