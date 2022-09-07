@@ -18,7 +18,7 @@ const addWord = (event) => {
     {
         let game = JSON.parse(sessionStorage.getItem("game")) || {};
         let words = game["words"] ? game["words"] : [];
-        words.push(word.toLowerCase());
+        words.push(word.toUpperCas());
         game["words"] = words;
         game = start.getWord(game);
         sessionStorage.setItem("game", JSON.stringify(game));
