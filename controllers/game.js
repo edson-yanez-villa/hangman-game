@@ -42,7 +42,9 @@ const renderWords = () => {
     const widthLine = widthCanva/(correctLetters.length*1.5);
 
     const pincel = canvaLeters.getContext("2d");
+    pincel.clearRect(0, 0, widthCanva, heightCanva);
     pincel.lineWidth = 5;
+    pincel.fillStyle = "#0A3871";
     pincel.font = "32px lucida console";
     pincel.beginPath();
     
@@ -55,6 +57,9 @@ const renderWords = () => {
         pincel.stroke();
         possitionLine += widthLine;
     }
+    pincel.font = "24px lucida console";
+    const textWidth = pincel.measureText(incorrectLetters).width;
+    pincel.fillText(incorrectLetters, (widthCanva / 3) - (textWidth / 2), heightCanva / 1.1);
 }
 
 const fillCorrectLetters = (letter) => {
