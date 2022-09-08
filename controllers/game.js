@@ -4,7 +4,7 @@ var game = JSON.parse(sessionStorage.getItem("game")) || {};
 var word = game["word"];
 
 var correctLetters = new Array(word.length);
-var incorrectLetters
+var incorrectLetters = "";
 
 const canvaHangman = document.querySelector("[box-hangman]");
 const canvaLeters = document.querySelector("[box-leters]");
@@ -14,6 +14,11 @@ const clickButton = (event) => {
     if (buttons[buttonType])
         buttons[buttonType](event);
 };
+
+document.addEventListener('keyup', (event) => {
+    const keyValue = event.key;
+    verifyLetter(keyValue);
+});
 
 const goToIndex = (event) => {
     window.location.href = "./index.html";
@@ -44,7 +49,7 @@ const renderWords = () => {
     let possitionLine = 0;
     for (let index = 0; index < correctLetters.length; index++) {
         if (correctLetters[index])
-            pincel.fillText(correctLetters[index], possitionLine + (widthLine/2) - 14, heightCanva/2 - 30);
+            pincel.fillText(correctLetters[index], possitionLine + (widthLine/2) - 18, heightCanva/2 - 30);
         pincel.moveTo(possitionLine, heightCanva/2);
         pincel.lineTo(possitionLine + (widthLine*0.8),heightCanva/2);
         pincel.stroke();
@@ -62,18 +67,25 @@ const fillCorrectLetters = (letter) => {
 
 const fillIncorrectLetters = (letter) => {
     if (!incorrectLetters.match(letter))
-        incorrectLetters.push(letter);
+        incorrectLetters += letter;
 };
 
 const isValidLetter = (letter) => {
     const expresion = /[a-zA-Z]/g;
     const result = expresion.exec(letter);
-    return letter.length == 1 && result[0].length == 1;
+    if(result)
+        return letter.length == 1 && result[0].length == 1;
+    return false;
 };
 
 const verifyLetter = (letter) => {
     if (isValidLetter(letter)){
-        upperLetter = letter.toUpperCas();
+        upperLetter = letter.toUpperCase();
+        if (word.match(upperLetter))
+            fillCorrectLetters(upperLetter);
+        else
+            fillIncorrectLetters(upperLetter);
+        renderWords();
     }else{
         alert("Ingrese una letra valida de A a la Z");
     }

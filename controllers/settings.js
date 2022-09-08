@@ -7,7 +7,9 @@ const goSettings = (event) => {
 const validateWord = (word) => {    
     const expresion = /[a-zA-Z]{1,8}/g;
     const result = expresion.exec(word);
-    return word.length <= 8 && result[0].length == word.length;
+    if (result)
+        return word.length <= 8 && result[0].length == word.length;
+    return false;
 }
 
 const addWord = (event) => {
@@ -18,7 +20,7 @@ const addWord = (event) => {
     {
         let game = JSON.parse(sessionStorage.getItem("game")) || {};
         let words = game["words"] ? game["words"] : [];
-        words.push(word.toUpperCas());
+        words.push(word.toUpperCase());
         game["words"] = words;
         game = start.getWord(game);
         sessionStorage.setItem("game", JSON.stringify(game));
