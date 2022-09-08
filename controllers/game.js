@@ -18,6 +18,7 @@ const clickButton = (event) => {
 document.addEventListener('keyup', (event) => {
     const keyValue = event.key;
     verifyLetter(keyValue);
+    verifyGame();
 });
 
 const goToIndex = (event) => {
@@ -35,6 +36,40 @@ buttonsGame.forEach(button => {
         clickButton(button.target);
     });
 });
+
+const gameIsWon = () => {
+    console.log(correctLetters.toString());
+    if(correctLetters.toString() == word){
+        return true;
+    }
+    return false;
+};
+
+const isGameLose = () => {
+    if(incorrectLetters.length >= 7)
+        return true;
+    return false;
+};
+
+const verifyGame = () => {
+    if(gameIsWon())
+        drawMessage("Ganaste, felicidades", "green");
+    else if(isGameLose())
+        drawMessage("Fin del juego", "red");
+};
+
+const drawMessage = (message, color) => {
+    console.log("Entro");
+    const widthCanva = canvaHangman.clientWidth;
+    const heightCanva = canvaHangman.clientHeight;
+
+    const pincel = canvaHangman.getContext("2d");
+    pincel.fillStyle = color;
+    pincel.font = "32px lucida console";
+    pincel.beginPath();
+    const textWidth = pincel.measureText(message).width;
+    pincel.fillText(message, (widthCanva / 3) - (textWidth / 2), heightCanva / 2);
+};
 
 const renderWords = () => {
     const widthCanva = canvaLeters.clientWidth;
