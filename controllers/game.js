@@ -38,11 +38,7 @@ buttonsGame.forEach(button => {
 });
 
 const gameIsWon = () => {
-    console.log(correctLetters.toString());
-    if(correctLetters.toString() == word){
-        return true;
-    }
-    return false;
+    return correctLetters.join("") === word;
 };
 
 const isGameLose = () => {
@@ -59,16 +55,16 @@ const verifyGame = () => {
 };
 
 const drawMessage = (message, color) => {
-    console.log("Entro");
     const widthCanva = canvaHangman.clientWidth;
     const heightCanva = canvaHangman.clientHeight;
-
     const pincel = canvaHangman.getContext("2d");
     pincel.fillStyle = color;
-    pincel.font = "32px lucida console";
+    pincel.font = "24px lucida console";
     pincel.beginPath();
     const textWidth = pincel.measureText(message).width;
-    pincel.fillText(message, (widthCanva / 3) - (textWidth / 2), heightCanva / 2);
+    console.log(textWidth);
+    console.log(heightCanva);
+    pincel.fillText(message, (widthCanva / 2) - (textWidth / 2), heightCanva/4);
 };
 
 const renderWords = () => {
