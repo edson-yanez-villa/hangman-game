@@ -17,8 +17,10 @@ const clickButton = (event) => {
 
 document.addEventListener('keyup', (event) => {
     const keyValue = event.key;
-    verifyLetter(keyValue);
-    verifyGame();
+    if (incorrectLetters.length < 7){
+        verifyLetter(keyValue);
+        verifyGame();
+    }
 });
 
 const goToIndex = (event) => {
@@ -27,8 +29,22 @@ const goToIndex = (event) => {
 
 const buttons = {
     buttonLeftGame: (event) => goToIndex(event),
+    buttonNewGame: (event) => newGame(event),
 };
 
+const newGame = (event) => {
+    word = getWord(game);
+    console.log(word)
+    incorrectLetters = "";
+    correctLetters = new Array(word.length);
+    renderWords();
+    canvaHangman.getContext("2d").clearRect(0, 0, canvaHangman.width, canvaHangman.height)
+};
+
+const getWord = (game) => {
+    const index = Math.floor(Math.random() * game['words'].length);
+    return game['words'][index];
+}
 
 buttonsGame.forEach(button => {
     button.addEventListener("click", (button) => {
@@ -52,12 +68,11 @@ const drawMessage = (message, color) => {
     pincel.font = "24px lucida console";
     pincel.beginPath();
     const textWidth = pincel.measureText(message).width;
-    console.log(textWidth);
-    console.log(heightCanva);
     pincel.fillText(message, (widthCanva / 2) - (textWidth / 2), heightCanva/4);
 };
 
 const renderWords = () => {
+    console.log(word);
     const widthCanva = canvaLeters.clientWidth;
     const heightCanva = canvaLeters.clientHeight;
     const widthLine = widthCanva/(correctLetters.length*1.5);
@@ -92,15 +107,59 @@ const renderBody = () => {
             drawBase(pincel);
             break;
         case 2:
-          drawHead(pincel);
-          break;
+            drawHead(pincel);
+            break;
+        case 3:
+            drawBody(pincel);
+            break;
+        case 4:
+            pincel.lineWidth = 3;
+            drawLeftHand(pincel);
+            break;
+        case 5:
+            pincel.lineWidth = 3;
+            drawRightHand(pincel);
+            break;
+        case 6:
+            pincel.lineWidth = 3;
+            drawLeftLeg(pincel);
+            break;
+        case 7:
+            pincel.lineWidth = 3;
+            drawRightLeg(pincel);
+            break;
     }
     pincel.stroke();
 };
 
 const drawHead = (pincel) => {
-    pincel.arc(257, 44, 15, 0, 2 * Math.PI);
+    pincel.arc(257, 29, 10, 0, 2 * Math.PI);
 };
+
+const drawBody = (pincel) => {
+    pincel.moveTo(257, 39);
+    pincel.lineTo(257, 89);
+}
+
+const drawLeftHand = (pincel) => {
+    pincel.moveTo(257, 39);
+    pincel.lineTo(289, 59);
+}
+
+const drawRightHand = (pincel) => {
+    pincel.moveTo(257, 39);
+    pincel.lineTo(225, 59);
+}
+
+const drawLeftLeg = (pincel) => {
+    pincel.moveTo(257, 89);
+    pincel.lineTo(289, 109);
+}
+
+const drawRightLeg = (pincel) => {
+    pincel.moveTo(257, 89);
+    pincel.lineTo(225, 109);
+}
 
 const drawBase = (pincel) => {
     pincel.moveTo(80, 0);
@@ -110,7 +169,7 @@ const drawBase = (pincel) => {
     pincel.moveTo(80, 0);
     pincel.lineTo(257, 0);
     pincel.moveTo(257, 0);
-    pincel.lineTo(257, 29);
+    pincel.lineTo(257, 19);
 }
 
 const fillCorrectLetters = (letter) => {
