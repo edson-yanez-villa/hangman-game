@@ -37,20 +37,10 @@ buttonsGame.forEach(button => {
     });
 });
 
-const gameIsWon = () => {
-    return correctLetters.join("") === word;
-};
-
-const isGameLose = () => {
-    if(incorrectLetters.length >= 7)
-        return true;
-    return false;
-};
-
 const verifyGame = () => {
-    if(gameIsWon())
+    if(correctLetters.join("") === word)
         drawMessage("Ganaste, felicidades", "green");
-    else if(isGameLose())
+    else if(incorrectLetters.length >= 7)
         drawMessage("Fin del juego", "red");
 };
 
@@ -74,7 +64,7 @@ const renderWords = () => {
 
     const pincel = canvaLeters.getContext("2d");
     pincel.clearRect(0, 0, widthCanva, heightCanva);
-    pincel.lineWidth = 5;
+    pincel.lineWidth = 4;
     pincel.fillStyle = "#0A3871";
     pincel.font = "32px lucida console";
     pincel.beginPath();
@@ -91,6 +81,36 @@ const renderWords = () => {
     pincel.font = "24px lucida console";
     const textWidth = pincel.measureText(incorrectLetters).width;
     pincel.fillText(incorrectLetters, (widthCanva / 3) - (textWidth / 2), heightCanva / 1.1);
+}
+
+const renderBody = () => {
+    const pincel = canvaHangman.getContext("2d");
+    pincel.lineWidth = 4;
+    pincel.beginPath();
+    switch(incorrectLetters.length) {
+        case 1:
+            drawBase(pincel);
+            break;
+        case 2:
+          drawHead(pincel);
+          break;
+    }
+    pincel.stroke();
+};
+
+const drawHead = (pincel) => {
+    pincel.arc(257, 44, 15, 0, 2 * Math.PI);
+};
+
+const drawBase = (pincel) => {
+    pincel.moveTo(80, 0);
+    pincel.lineTo(80,canvaHangman.height);
+    pincel.moveTo(0, canvaHangman.height);
+    pincel.lineTo(canvaHangman.width, canvaHangman.height);
+    pincel.moveTo(80, 0);
+    pincel.lineTo(257, 0);
+    pincel.moveTo(257, 0);
+    pincel.lineTo(257, 29);
 }
 
 const fillCorrectLetters = (letter) => {
@@ -122,6 +142,7 @@ const verifyLetter = (letter) => {
         else
             fillIncorrectLetters(upperLetter);
         renderWords();
+        renderBody();
     }else{
         alert("Ingrese una letra valida de A a la Z");
     }
