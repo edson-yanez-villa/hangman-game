@@ -17,7 +17,7 @@ const clickButton = (event) => {
 
 document.addEventListener('keyup', (event) => {
     const keyValue = event.key;
-    if (incorrectLetters.length < 7){
+    if (incorrectLetters.length < 7 && correctLetters.join("").length < word.length){
         verifyLetter(keyValue);
         verifyGame();
     }
