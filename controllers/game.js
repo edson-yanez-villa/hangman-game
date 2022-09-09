@@ -34,7 +34,6 @@ const buttons = {
 
 const newGame = (event) => {
     word = getWord(game);
-    console.log(word)
     incorrectLetters = "";
     correctLetters = new Array(word.length);
     renderWords();
@@ -72,7 +71,6 @@ const drawMessage = (message, color) => {
 };
 
 const renderWords = () => {
-    console.log(word);
     const widthCanva = canvaLeters.clientWidth;
     const heightCanva = canvaLeters.clientHeight;
     const widthLine = widthCanva/(correctLetters.length*1.5);
